@@ -1,0 +1,61 @@
+generated-with: Easy Java/Javascript Simulations, version 6.01, build 201013. Visit http://www.um.es/fem/Ejs
+title: Cinemática 2D
+logo-image: 
+author: Humberto Carmona
+copyright: 
+preferred-width: 800
+preferred-height: 800
+author-image: HAC_logo.png
+source: cinematica2Dv3.ejss
+main-script: 
+main-simulation: cinematica2Dv3_Simulation.xhtml
+available-languages: 
+html-description: cinematica2Dv3_Intro_1.html
+html-contents: cinematica2Dv3_Contents.xhtml
+html-main: cinematica2Dv3.xhtml
+page-title: Introdução
+page-index: cinematica2Dv3_Intro_1.html
+page-title: Cinemática 2D
+page-index: cinematica2Dv3_Simulation.xhtml
+resource: figs/HAC_logo.png
+resource: HAC_logo.png
+resource: figs/observer2 copy.png
+resource: figs/pipe2.png
+resource: figs/star.png
+resource: figs/pipe3.png
+resource: figs/moon.jpg
+resource: figs/Ptolemaic_system320x180.png
+resource: figs/Terra_PoLo_Norte_Pq.png
+resource: figs/Water.jpg
+resource: figs/001-2.gif
+resource: figs/tranque_pic.png
+resource: figs/star_w.png
+resource: figs/night_sky.png
+resource: figs/escoamento_pic.png
+resource: figs/WaterSurface.jpg
+resource: figs/pendulo1_pic.png
+resource: figs/Terra_PoLo_Norte.png
+resource: figs/wood_texture.jpg
+resource: figs/Ptolemaic_system.png
+resource: figs/earth.jpg
+resource: figs/observer3.png
+resource: figs/copernic-system-lrg.en.png
+resource: figs/principia_p513.png
+resource: figs/mcu1_pic.png
+resource: figs/kepler.png
+resource: figs/gsed_0001_0009_0_img1844.png
+resource: figs/play.gif
+resource: figs/pipe1.png
+resource: figs/reset.gif
+resource: figs/torneira1.png
+resource: figs/observer1.ai
+resource: figs/images.png
+resource: figs/ohs1_pic.png
+resource: figs/schr_FD.png
+resource: figs/observer1.png
+resource: figs/vasos_comunicantes.png
+resource: figs/observer3 2.png
+resource: figs/mare.png
+resource: figs/satelite_newton.png
+resource: figs/grass-texture.jpg
+resource: figs/observer2.png
