@@ -160,8 +160,11 @@
         var showPosPlt; // EjsS Model.Variables.Constants.showPosPlt
         var showPlot; // EjsS Model.Variables.Constants.showPlot
         var showEqs; // EjsS Model.Variables.Constants.showEqs
+        var oneD; // EjsS Model.Variables.Constants.oneD
         var function_x_t; // EjsS Model.Variables.Constants.function_x_t
         var function_y_t; // EjsS Model.Variables.Constants.function_y_t
+        var function_y_t1; // EjsS Model.Variables.Constants.function_y_t1
+        var function_y_t0; // EjsS Model.Variables.Constants.function_y_t0
 
         var ti; // EjsS Model.Variables.limite.ti
         var tii; // EjsS Model.Variables.limite.tii
@@ -223,8 +226,11 @@
             showPosPlt: showPosPlt,
             showPlot: showPlot,
             showEqs: showEqs,
+            oneD: oneD,
             function_x_t: function_x_t,
             function_y_t: function_y_t,
+            function_y_t1: function_y_t1,
+            function_y_t0: function_y_t0,
             ti: ti,
             tii: tii,
             xi: xi,
@@ -281,8 +287,11 @@
             showPosPlt: showPosPlt,
             showPlot: showPlot,
             showEqs: showEqs,
+            oneD: oneD,
             function_x_t: function_x_t,
             function_y_t: function_y_t,
+            function_y_t1: function_y_t1,
+            function_y_t0: function_y_t0,
             ti: ti,
             tii: tii,
             xi: xi,
@@ -337,10 +346,15 @@
             showPosPlt = json.showPosPlt;
           if (typeof json.showPlot != "undefined") showPlot = json.showPlot;
           if (typeof json.showEqs != "undefined") showEqs = json.showEqs;
+          if (typeof json.oneD != "undefined") oneD = json.oneD;
           if (typeof json.function_x_t != "undefined")
             function_x_t = json.function_x_t;
           if (typeof json.function_y_t != "undefined")
             function_y_t = json.function_y_t;
+          if (typeof json.function_y_t1 != "undefined")
+            function_y_t1 = json.function_y_t1;
+          if (typeof json.function_y_t0 != "undefined")
+            function_y_t0 = json.function_y_t0;
           if (typeof json.ti != "undefined") ti = json.ti;
           if (typeof json.tii != "undefined") tii = json.tii;
           if (typeof json.xi != "undefined") xi = json.xi;
@@ -397,10 +411,15 @@
             showPosPlt = json.showPosPlt;
           if (typeof json.showPlot != "undefined") showPlot = json.showPlot;
           if (typeof json.showEqs != "undefined") showEqs = json.showEqs;
+          if (typeof json.oneD != "undefined") oneD = json.oneD;
           if (typeof json.function_x_t != "undefined")
             function_x_t = json.function_x_t;
           if (typeof json.function_y_t != "undefined")
             function_y_t = json.function_y_t;
+          if (typeof json.function_y_t1 != "undefined")
+            function_y_t1 = json.function_y_t1;
+          if (typeof json.function_y_t0 != "undefined")
+            function_y_t0 = json.function_y_t0;
           if (typeof json.ti != "undefined") ti = json.ti;
           if (typeof json.tii != "undefined") tii = json.tii;
           if (typeof json.xi != "undefined") xi = json.xi;
@@ -469,7 +488,7 @@
           xmax = 3; // EjsS Model.Variables.plotrange.xmax
           ymin = -3; // EjsS Model.Variables.plotrange.ymin
           ymax = 3; // EjsS Model.Variables.plotrange.ymax
-          tmax = 1.0; // EjsS Model.Variables.plotrange.tmax
+          tmax = 1.2; // EjsS Model.Variables.plotrange.tmax
           plotsize = 450; // EjsS Model.Variables.plotrange.plotsize
           plotsize2 = 300; // EjsS Model.Variables.plotrange.plotsize2
         });
@@ -484,8 +503,11 @@
           showPosPlt = false; // EjsS Model.Variables.Constants.showPosPlt
           showPlot = true; // EjsS Model.Variables.Constants.showPlot
           showEqs = false; // EjsS Model.Variables.Constants.showEqs
+          oneD = true; // EjsS Model.Variables.Constants.oneD
           function_x_t = "-1.8 + 12*t - 10*t*t"; // EjsS Model.Variables.Constants.function_x_t
-          function_y_t = "1.8 + 0.5*t- 4.9*t*t"; // EjsS Model.Variables.Constants.function_y_t
+          function_y_t = "1.8"; // EjsS Model.Variables.Constants.function_y_t
+          function_y_t1 = "1.8 + 0.5*t- 4.9*t*t"; // EjsS Model.Variables.Constants.function_y_t1
+          function_y_t0 = "1.8"; // EjsS Model.Variables.Constants.function_y_t0
         });
 
         _model.addToReset(function () {
@@ -612,40 +634,51 @@
         _model.addToInitialization(function () {
           if (!__pagesEnabled["Init Page"]) return;
           _view._update(); // > Initialization.Init Page:1
+          _view.x_t.evaluate({ t: 0 }); // > Initialization.Init Page:2
+          if (oneD == true) {
+            // > Initialization.Init Page:3
+            function_y_t = function_y_t0; // > Initialization.Init Page:4
+            tmax = 1.22; // > Initialization.Init Page:5
+          } else {
+            // > Initialization.Init Page:6
+            function_y_t = function_y_t1; // > Initialization.Init Page:7
+            tmax = 1.0; // > Initialization.Init Page:8
+          } // > Initialization.Init Page:9
+          // > Initialization.Init Page:10
           if (showPos == false) {
-            // > Initialization.Init Page:2
-            _view.x_time.setProperty("Display", "none"); // > Initialization.Init Page:3
-            _view.y_time.setProperty("Display", "none"); // > Initialization.Init Page:4
-            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:5
-          } // > Initialization.Init Page:6
-          if (showVel == false) {
-            // > Initialization.Init Page:7
-            _view.velocity_time.setProperty("Display", "none"); // > Initialization.Init Page:8
-            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:9
-          } // > Initialization.Init Page:10
-          if (showVel == false) {
             // > Initialization.Init Page:11
-            _view.acel_time.setProperty("Display", "none"); // > Initialization.Init Page:12
-            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:13
-          } // > Initialization.Init Page:14
-          t = 0; // > Initialization.Init Page:15
-          x = _view.x_t.evaluate({ t: t }); // > Initialization.Init Page:16
-          var x0 = _view.x_t.evaluate({ t: t - dt }); // > Initialization.Init Page:17
-          var x00 = _view.x_t.evaluate({ t: t - 2 * dt }); // > Initialization.Init Page:18
-          vx = (x - x0) / dt; // > Initialization.Init Page:19
-          tethax = Math.atan2(x - x0, dt); // > Initialization.Init Page:20
-          ax = (x - 2 * x0 + x00) / (dt * dt); // > Initialization.Init Page:21
-          tethaax = Math.atan2(x - 2 * x0 + x00, dt * dt); // > Initialization.Init Page:22
-          y = _view.y_t.evaluate({ t: t }); // > Initialization.Init Page:23
-          var y0 = _view.y_t.evaluate({ t: t - dt }); // > Initialization.Init Page:24
-          var y00 = _view.y_t.evaluate({ t: t - 2 * dt }); // > Initialization.Init Page:25
-          vy = (y - y0) / dt; // > Initialization.Init Page:26
-          tethay = Math.atan2(y - y0, dt); // > Initialization.Init Page:27
-          ay = (y - 2 * y0 + y00) / (dt * dt); // > Initialization.Init Page:28
-          tethaay = Math.atan2(y - 2 * y0 + y00, dt * dt); // > Initialization.Init Page:29
-          vel = Math.sqrt(vx * vx + vy * vy); // > Initialization.Init Page:30
-          acel = Math.sqrt(ax * ax + ay * ay); // > Initialization.Init Page:31
-          _view.bottomPanel.setProperty("Width", 850); // > Initialization.Init Page:32
+            _view.x_time.setProperty("Display", "none"); // > Initialization.Init Page:12
+            _view.y_time.setProperty("Display", "none"); // > Initialization.Init Page:13
+            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:14
+          } // > Initialization.Init Page:15
+          if (showVel == false) {
+            // > Initialization.Init Page:16
+            _view.velocity_time.setProperty("Display", "none"); // > Initialization.Init Page:17
+            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:18
+          } // > Initialization.Init Page:19
+          if (showVel == false) {
+            // > Initialization.Init Page:20
+            _view.acel_time.setProperty("Display", "none"); // > Initialization.Init Page:21
+            _view.bottomPanel.setProperty("Width", 450); // > Initialization.Init Page:22
+          } // > Initialization.Init Page:23
+          t = 0; // > Initialization.Init Page:24
+          x = _view.x_t.evaluate({ t: t }); // > Initialization.Init Page:25
+          var x0 = _view.x_t.evaluate({ t: t - dt }); // > Initialization.Init Page:26
+          var x00 = _view.x_t.evaluate({ t: t - 2 * dt }); // > Initialization.Init Page:27
+          vx = (x - x0) / dt; // > Initialization.Init Page:28
+          tethax = Math.atan2(x - x0, dt); // > Initialization.Init Page:29
+          ax = (x - 2 * x0 + x00) / (dt * dt); // > Initialization.Init Page:30
+          tethaax = Math.atan2(x - 2 * x0 + x00, dt * dt); // > Initialization.Init Page:31
+          y = _view.y_t.evaluate({ t: t }); // > Initialization.Init Page:32
+          var y0 = _view.y_t.evaluate({ t: t - dt }); // > Initialization.Init Page:33
+          var y00 = _view.y_t.evaluate({ t: t - 2 * dt }); // > Initialization.Init Page:34
+          vy = (y - y0) / dt; // > Initialization.Init Page:35
+          tethay = Math.atan2(y - y0, dt); // > Initialization.Init Page:36
+          ay = (y - 2 * y0 + y00) / (dt * dt); // > Initialization.Init Page:37
+          tethaay = Math.atan2(y - 2 * y0 + y00, dt * dt); // > Initialization.Init Page:38
+          vel = Math.sqrt(vx * vx + vy * vy); // > Initialization.Init Page:39
+          acel = Math.sqrt(ax * ax + ay * ay); // > Initialization.Init Page:40
+          _view.bottomPanel.setProperty("Width", 850); // > Initialization.Init Page:41
         });
 
         _model.addToEvolution(function () {
@@ -2303,6 +2336,16 @@
                 }); // HtmlView Page setting action 'OnClick' for element 'stepButton'
                 _view.stepback.setAction("OnClick", stepBack2); // HtmlView Page setting action 'OnClick' for element 'stepback'
                 _view.resetButton.setAction("OnClick", _initialize); // HtmlView Page setting action 'OnClick' for element 'resetButton'
+                _view.oneDimension.linkProperty(
+                  "Checked",
+                  function () {
+                    return oneD;
+                  },
+                  function (_v) {
+                    oneD = _v;
+                  }
+                ); // HtmlView Page linking property 'Checked' for element 'oneDimension'
+                _view.oneDimension.setAction("OnChange", _initialize); // HtmlView Page setting action 'OnChange' for element 'oneDimension'
                 _view.showTraj.linkProperty(
                   "Checked",
                   function () {
@@ -2507,7 +2550,7 @@
             ._addElement(EJSS_DRAWING2D.trail, "trail", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'trail'
             .setProperty("LineColor", "DarkGray") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'trail'
             .setProperty("NoRepeat", true) // EJsS HtmlView.HtmlView Page: setting property 'NoRepeat' for element 'trail'
-            .setProperty("LineWidth", 2); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'trail'
+            .setProperty("LineWidth", 5); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'trail'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "shape", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'shape'
@@ -2531,7 +2574,7 @@
             .setProperty("LineColor", "Black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'pos'
             .setProperty("X", 0) // EJsS HtmlView.HtmlView Page: setting property 'X' for element 'pos'
             .setProperty("Y", 0) // EJsS HtmlView.HtmlView Page: setting property 'Y' for element 'pos'
-            .setProperty("LineWidth", 2); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'pos'
+            .setProperty("LineWidth", 3); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'pos'
 
           _view
             ._addElement(EJSS_DRAWING2D.segment, "xLine", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'xLine'
@@ -3042,6 +3085,15 @@
               _view.bottomPanel
             ) // EJsS HtmlView.HtmlView Page: declaration of element 'resetButton'
             .setProperty("Text", "R"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'resetButton'
+
+          _view
+            ._addElement(
+              EJSS_INTERFACE.checkBox,
+              "oneDimension",
+              _view.bottomPanel
+            ) // EJsS HtmlView.HtmlView Page: declaration of element 'oneDimension'
+            .setProperty("Text", "dim") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'oneDimension'
+            .setProperty("Font", "normal bold 10px "); // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'oneDimension'
 
           _view
             ._addElement(EJSS_INTERFACE.checkBox, "showTraj", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showTraj'
