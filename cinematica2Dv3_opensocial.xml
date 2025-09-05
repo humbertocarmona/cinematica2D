@@ -3,7 +3,7 @@
 <ModulePrefs
 title="cinematica2Dv3"
 author="Humberto Carmona"
-description="Essa Ã© uma simulaÃ§Ã£o do movimento de uma massa pontual"
+description="Essa é uma simulação do movimento de uma massa pontual"
 screenshot=""
 thumbnail="">
 <Require feature="opensocial-0.9"/>

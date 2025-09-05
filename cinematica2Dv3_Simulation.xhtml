@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <title>Cinemática 2D</title>
-    <link rel="stylesheet"  type="text/css" href="library/css/ejss.css" />
-    <script src="library/scripts/common_script.js"></script>
-    <script src="library/scripts/textresizedetector.js"></script>
-    <script src="library/ejsS.v1.min.js"></script>
+    <link rel="stylesheet"  type="text/css" href="_ejs_library/css/ejss.css" />
+    <script src="_ejs_library/scripts/common_script.js"></script>
+    <script src="_ejs_library/scripts/textresizedetector.js"></script>
+    <script src="_ejs_library/ejsS.v1.min.js"></script>
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 /* _inputParameters: an object with different values for the model parameters */
 function cinematica2Dv3(_topFrame,_libraryPath,_codebasePath, _inputParameters) {
@@ -88,9 +88,13 @@ var _stringProperties = {};
   var plotsize; // EjsS Model.Variables.plotrange.plotsize
   var plotsize2; // EjsS Model.Variables.plotrange.plotsize2
 
+  var showTraj; // EjsS Model.Variables.Constants.showTraj
   var showAcel; // EjsS Model.Variables.Constants.showAcel
+  var showAcelPlt; // EjsS Model.Variables.Constants.showAcelPlt
   var showVel; // EjsS Model.Variables.Constants.showVel
+  var showVelPlt; // EjsS Model.Variables.Constants.showVelPlt
   var showPos; // EjsS Model.Variables.Constants.showPos
+  var showPosPlt; // EjsS Model.Variables.Constants.showPosPlt
   var showPlot; // EjsS Model.Variables.Constants.showPlot
   var showEqs; // EjsS Model.Variables.Constants.showEqs
   var function_x_t; // EjsS Model.Variables.Constants.function_x_t
@@ -144,9 +148,13 @@ var _stringProperties = {};
       tmax : tmax,
       plotsize : plotsize,
       plotsize2 : plotsize2,
+      showTraj : showTraj,
       showAcel : showAcel,
+      showAcelPlt : showAcelPlt,
       showVel : showVel,
+      showVelPlt : showVelPlt,
       showPos : showPos,
+      showPosPlt : showPosPlt,
       showPlot : showPlot,
       showEqs : showEqs,
       function_x_t : function_x_t,
@@ -196,9 +204,13 @@ var _stringProperties = {};
       tmax : tmax,
       plotsize : plotsize,
       plotsize2 : plotsize2,
+      showTraj : showTraj,
       showAcel : showAcel,
+      showAcelPlt : showAcelPlt,
       showVel : showVel,
+      showVelPlt : showVelPlt,
       showPos : showPos,
+      showPosPlt : showPosPlt,
       showPlot : showPlot,
       showEqs : showEqs,
       function_x_t : function_x_t,
@@ -245,9 +257,13 @@ var _stringProperties = {};
     if(typeof json.tmax != "undefined") tmax = json.tmax;
     if(typeof json.plotsize != "undefined") plotsize = json.plotsize;
     if(typeof json.plotsize2 != "undefined") plotsize2 = json.plotsize2;
+    if(typeof json.showTraj != "undefined") showTraj = json.showTraj;
     if(typeof json.showAcel != "undefined") showAcel = json.showAcel;
+    if(typeof json.showAcelPlt != "undefined") showAcelPlt = json.showAcelPlt;
     if(typeof json.showVel != "undefined") showVel = json.showVel;
+    if(typeof json.showVelPlt != "undefined") showVelPlt = json.showVelPlt;
     if(typeof json.showPos != "undefined") showPos = json.showPos;
+    if(typeof json.showPosPlt != "undefined") showPosPlt = json.showPosPlt;
     if(typeof json.showPlot != "undefined") showPlot = json.showPlot;
     if(typeof json.showEqs != "undefined") showEqs = json.showEqs;
     if(typeof json.function_x_t != "undefined") function_x_t = json.function_x_t;
@@ -293,9 +309,13 @@ var _stringProperties = {};
     if(typeof json.tmax != "undefined") tmax = json.tmax;
     if(typeof json.plotsize != "undefined") plotsize = json.plotsize;
     if(typeof json.plotsize2 != "undefined") plotsize2 = json.plotsize2;
+    if(typeof json.showTraj != "undefined") showTraj = json.showTraj;
     if(typeof json.showAcel != "undefined") showAcel = json.showAcel;
+    if(typeof json.showAcelPlt != "undefined") showAcelPlt = json.showAcelPlt;
     if(typeof json.showVel != "undefined") showVel = json.showVel;
+    if(typeof json.showVelPlt != "undefined") showVelPlt = json.showVelPlt;
     if(typeof json.showPos != "undefined") showPos = json.showPos;
+    if(typeof json.showPosPlt != "undefined") showPosPlt = json.showPosPlt;
     if(typeof json.showPlot != "undefined") showPlot = json.showPlot;
     if(typeof json.showEqs != "undefined") showEqs = json.showEqs;
     if(typeof json.function_x_t != "undefined") function_x_t = json.function_x_t;
@@ -367,9 +387,13 @@ var _stringProperties = {};
   });
 
   _model.addToReset(function() {
+    showTraj = false; // EjsS Model.Variables.Constants.showTraj
     showAcel = false; // EjsS Model.Variables.Constants.showAcel
+    showAcelPlt = false; // EjsS Model.Variables.Constants.showAcelPlt
     showVel = false; // EjsS Model.Variables.Constants.showVel
+    showVelPlt = false; // EjsS Model.Variables.Constants.showVelPlt
     showPos = false; // EjsS Model.Variables.Constants.showPos
+    showPosPlt = false; // EjsS Model.Variables.Constants.showPosPlt
     showPlot = true; // EjsS Model.Variables.Constants.showPlot
     showEqs = false; // EjsS Model.Variables.Constants.showEqs
     function_x_t = "-1.8 + 12*t - 10*t*t"; // EjsS Model.Variables.Constants.function_x_t
@@ -444,6 +468,39 @@ var _stringProperties = {};
     yff = yi + vmedy*(tff - ti);  // > CustomCode.Lib Page:48
   }  // > CustomCode.Lib Page:49
 
+  function set_x_time_on() {  // > CustomCode.Lib Page 2:1
+    if (showPosPlt){  // > CustomCode.Lib Page 2:2
+      _view.x_time.setProperty("Display","");    // > CustomCode.Lib Page 2:3
+      _view.y_time.setProperty("Display","");  // > CustomCode.Lib Page 2:4
+    }  // > CustomCode.Lib Page 2:5
+  }  // > CustomCode.Lib Page 2:6
+  function set_x_time_off() {  // > CustomCode.Lib Page 2:7
+     _view.x_time.setProperty("Display","none");  // > CustomCode.Lib Page 2:8
+    _view.y_time.setProperty("Display","none");  // > CustomCode.Lib Page 2:9
+  }  // > CustomCode.Lib Page 2:10
+  function set_v_time_on() {  // > CustomCode.Lib Page 2:11
+      if (showVelPlt){  // > CustomCode.Lib Page 2:12
+    _view.velocity_time.setProperty("Display","");  // > CustomCode.Lib Page 2:13
+    _view.bottomPanel.setProperty("Width",850);  // > CustomCode.Lib Page 2:14
+    }  // > CustomCode.Lib Page 2:15
+  }  // > CustomCode.Lib Page 2:16
+  function set_v_time_off() {  // > CustomCode.Lib Page 2:17
+  _view.velocity_time.setProperty("Display","none");  // > CustomCode.Lib Page 2:18
+  }  // > CustomCode.Lib Page 2:19
+  function set_a_time_on() {  // > CustomCode.Lib Page 2:20
+    if (showAcelPlt){  // > CustomCode.Lib Page 2:21
+      _view.acel_time.setProperty("Display","");  // > CustomCode.Lib Page 2:22
+      _view.bottomPanel.setProperty("Width",850);  // > CustomCode.Lib Page 2:23
+    }  // > CustomCode.Lib Page 2:24
+  }  // > CustomCode.Lib Page 2:25
+  function stepBack2() {  // > CustomCode.Lib Page 2:26
+    t = t-5*dt  // > CustomCode.Lib Page 2:27
+    _step();  // > CustomCode.Lib Page 2:28
+  }  // > CustomCode.Lib Page 2:29
+  function set_a_time_off() {  // > CustomCode.Lib Page 2:30
+  _view.acel_time.setProperty("Display","none");  // > CustomCode.Lib Page 2:31
+  }  // > CustomCode.Lib Page 2:32
+
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
     _view._update();  // > Initialization.Init Page:1
@@ -477,6 +534,7 @@ var _stringProperties = {};
     tethaay = Math.atan2((y-2*y0+y00),dt*dt);  // > Initialization.Init Page:29
     vel = Math.sqrt(vx*vx+vy*vy);  // > Initialization.Init Page:30
     acel = Math.sqrt(ax*ax+ay*ay);  // > Initialization.Init Page:31
+    _view.bottomPanel.setProperty("Width",850);  // > Initialization.Init Page:32
   });
 
   _model.addToEvolution(function() {
@@ -539,6 +597,7 @@ var _stringProperties = {};
           _view.trajetoria.linkProperty("MinimumX",  function() { return xmin; }, function(_v) { xmin = _v; } ); // HtmlView Page linking property 'MinimumX' for element 'trajetoria'
           _view.trajetoria.linkProperty("MinimumY",  function() { return ymin; }, function(_v) { ymin = _v; } ); // HtmlView Page linking property 'MinimumY' for element 'trajetoria'
           _view.trail.linkProperty("InputX",  function() { return x; }, function(_v) { x = _v; } ); // HtmlView Page linking property 'InputX' for element 'trail'
+          _view.trail.linkProperty("Visibility",  function() { return showTraj; }, function(_v) { showTraj = _v; } ); // HtmlView Page linking property 'Visibility' for element 'trail'
           _view.trail.linkProperty("InputY",  function() { return y; }, function(_v) { y = _v; } ); // HtmlView Page linking property 'InputY' for element 'trail'
           _view.shape.linkProperty("X",  function() { return x; }, function(_v) { x = _v; } ); // HtmlView Page linking property 'X' for element 'shape'
           _view.shape.linkProperty("Y",  function() { return y; }, function(_v) { y = _v; } ); // HtmlView Page linking property 'Y' for element 'shape'
@@ -553,12 +612,15 @@ var _stringProperties = {};
           _view.vel.linkProperty("Visibility",  function() { return showVel; }, function(_v) { showVel = _v; } ); // HtmlView Page linking property 'Visibility' for element 'vel'
           _view.vel.linkProperty("SizeY",  function() { return 0.1*vy; } ); // HtmlView Page linking property 'SizeY' for element 'vel'
           _view.pos.linkProperty("SizeX",  function() { return x; }, function(_v) { x = _v; } ); // HtmlView Page linking property 'SizeX' for element 'pos'
+          _view.pos.linkProperty("Visibility",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Visibility' for element 'pos'
           _view.pos.linkProperty("SizeY",  function() { return y; }, function(_v) { y = _v; } ); // HtmlView Page linking property 'SizeY' for element 'pos'
           _view.xLine.linkProperty("SizeX",  function() { return -x; } ); // HtmlView Page linking property 'SizeX' for element 'xLine'
           _view.xLine.linkProperty("X",  function() { return x; }, function(_v) { x = _v; } ); // HtmlView Page linking property 'X' for element 'xLine'
           _view.xLine.linkProperty("Y",  function() { return y; }, function(_v) { y = _v; } ); // HtmlView Page linking property 'Y' for element 'xLine'
+          _view.xLine.linkProperty("Visibility",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Visibility' for element 'xLine'
           _view.yLine.linkProperty("X",  function() { return x; }, function(_v) { x = _v; } ); // HtmlView Page linking property 'X' for element 'yLine'
           _view.yLine.linkProperty("Y",  function() { return y; }, function(_v) { y = _v; } ); // HtmlView Page linking property 'Y' for element 'yLine'
+          _view.yLine.linkProperty("Visibility",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Visibility' for element 'yLine'
           _view.yLine.linkProperty("SizeY",  function() { return -y; } ); // HtmlView Page linking property 'SizeY' for element 'yLine'
           _view.xaxis.linkProperty("SizeX",  function() { return xmax-xmin; } ); // HtmlView Page linking property 'SizeX' for element 'xaxis'
           _view.xaxis.linkProperty("X",  function() { return xmin; }, function(_v) { xmin = _v; } ); // HtmlView Page linking property 'X' for element 'xaxis'
@@ -575,7 +637,7 @@ var _stringProperties = {};
           _view.x_time.linkProperty("MaximumY",  function() { return xmax; }, function(_v) { xmax = _v; } ); // HtmlView Page linking property 'MaximumY' for element 'x_time'
           _view.x_time.linkProperty("MaximumX",  function() { return tmax; }, function(_v) { tmax = _v; } ); // HtmlView Page linking property 'MaximumX' for element 'x_time'
           _view.x_time.linkProperty("MinimumY",  function() { return xmin; }, function(_v) { xmin = _v; } ); // HtmlView Page linking property 'MinimumY' for element 'x_time'
-          _view.x_time.linkProperty("Visibility",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Visibility' for element 'x_time'
+          _view.x_time.linkProperty("Visibility",  function() { return showPosPlt; }, function(_v) { showPosPlt = _v; } ); // HtmlView Page linking property 'Visibility' for element 'x_time'
           _view.x_time.setAction("OnPress", function(_data,_info) {
   comp_x();
 
@@ -654,7 +716,7 @@ var _stringProperties = {};
           _view.y_time.linkProperty("MaximumY",  function() { return ymax; }, function(_v) { ymax = _v; } ); // HtmlView Page linking property 'MaximumY' for element 'y_time'
           _view.y_time.linkProperty("MaximumX",  function() { return tmax; }, function(_v) { tmax = _v; } ); // HtmlView Page linking property 'MaximumX' for element 'y_time'
           _view.y_time.linkProperty("MinimumY",  function() { return ymin; }, function(_v) { ymin = _v; } ); // HtmlView Page linking property 'MinimumY' for element 'y_time'
-          _view.y_time.linkProperty("Visibility",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Visibility' for element 'y_time'
+          _view.y_time.linkProperty("Visibility",  function() { return showPosPlt; }, function(_v) { showPosPlt = _v; } ); // HtmlView Page linking property 'Visibility' for element 'y_time'
           _view.y_time.setAction("OnPress", function(_data,_info) {
   comp_x();
 
@@ -724,10 +786,9 @@ var _stringProperties = {};
           _view.taxis2.linkProperty("SizeX",  function() { return tmax; }, function(_v) { tmax = _v; } ); // HtmlView Page linking property 'SizeX' for element 'taxis2'
           _view.velocity_time.linkProperty("Height",  function() { return plotsize2; }, function(_v) { plotsize2 = _v; } ); // HtmlView Page linking property 'Height' for element 'velocity_time'
           _view.velocity_time.linkProperty("Width",  function() { return plotsize; }, function(_v) { plotsize = _v; } ); // HtmlView Page linking property 'Width' for element 'velocity_time'
-          _view.velocity_time.linkProperty("Enabled",  function() { return showVel; }, function(_v) { showVel = _v; } ); // HtmlView Page linking property 'Enabled' for element 'velocity_time'
           _view.velocity_time.linkProperty("Title",  function() { return "t="+_view._format(t,"0.000")+" (vx,vy)=("+_view._format(vx,"0.00")+", "+_view._format(vy,"0.00")+")"; } ); // HtmlView Page linking property 'Title' for element 'velocity_time'
           _view.velocity_time.linkProperty("MaximumX",  function() { return tmax; }, function(_v) { tmax = _v; } ); // HtmlView Page linking property 'MaximumX' for element 'velocity_time'
-          _view.velocity_time.linkProperty("Visibility",  function() { return showVel; }, function(_v) { showVel = _v; } ); // HtmlView Page linking property 'Visibility' for element 'velocity_time'
+          _view.velocity_time.linkProperty("Visibility",  function() { return showVelPlt; }, function(_v) { showVelPlt = _v; } ); // HtmlView Page linking property 'Visibility' for element 'velocity_time'
           _view.vy.linkProperty("InputX",  function() { return t; }, function(_v) { t = _v; } ); // HtmlView Page linking property 'InputX' for element 'vy'
           _view.vy.linkProperty("InputY",  function() { return vy; }, function(_v) { vy = _v; } ); // HtmlView Page linking property 'InputY' for element 'vy'
           _view.vx.linkProperty("InputX",  function() { return t; }, function(_v) { t = _v; } ); // HtmlView Page linking property 'InputX' for element 'vx'
@@ -753,7 +814,7 @@ var _stringProperties = {};
           _view.acel_time.linkProperty("Enabled",  function() { return showAcel; }, function(_v) { showAcel = _v; } ); // HtmlView Page linking property 'Enabled' for element 'acel_time'
           _view.acel_time.linkProperty("Title",  function() { return "t="+_view._format(t,"0.000")+" (ax,ay)=("+_view._format(ax,"0.00")+", "+_view._format(ay,"0.00")+")"; } ); // HtmlView Page linking property 'Title' for element 'acel_time'
           _view.acel_time.linkProperty("MaximumX",  function() { return tmax; }, function(_v) { tmax = _v; } ); // HtmlView Page linking property 'MaximumX' for element 'acel_time'
-          _view.acel_time.linkProperty("Visibility",  function() { return showAcel; }, function(_v) { showAcel = _v; } ); // HtmlView Page linking property 'Visibility' for element 'acel_time'
+          _view.acel_time.linkProperty("Visibility",  function() { return showAcelPlt; }, function(_v) { showAcelPlt = _v; } ); // HtmlView Page linking property 'Visibility' for element 'acel_time'
           _view.ay.linkProperty("InputX",  function() { return t; }, function(_v) { t = _v; } ); // HtmlView Page linking property 'InputX' for element 'ay'
           _view.ay.linkProperty("InputY",  function() { return ay; }, function(_v) { ay = _v; } ); // HtmlView Page linking property 'InputY' for element 'ay'
           _view.ax.linkProperty("InputX",  function() { return t; }, function(_v) { t = _v; } ); // HtmlView Page linking property 'InputX' for element 'ax'
@@ -782,47 +843,25 @@ var _stringProperties = {};
   _step();
 
 }); // HtmlView Page setting action 'OnClick' for element 'stepButton'
-          _view.stepButton2.setAction("OnClick", function(_data,_info) {
-  t=t-2*dt;
-  _step();
-
-}); // HtmlView Page setting action 'OnClick' for element 'stepButton2'
+          _view.stepback.setAction("OnClick", stepBack2); // HtmlView Page setting action 'OnClick' for element 'stepback'
           _view.resetButton.setAction("OnClick", _initialize); // HtmlView Page setting action 'OnClick' for element 'resetButton'
-          _view.showPlotPosition_time.linkProperty("Checked",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPlotPosition_time'
-          _view.showPlotPosition_time.setAction("OnCheckOff", function(_data,_info) {
-  _view.x_time.setProperty("Display","none");
-  _view.y_time.setProperty("Display","none");
-  _view.bottomPanel.setProperty("Width",450);
-
-}); // HtmlView Page setting action 'OnCheckOff' for element 'showPlotPosition_time'
-          _view.showPlotPosition_time.setAction("OnCheckOn", function(_data,_info) {
-  _view.x_time.setProperty("Display","");
-  _view.y_time.setProperty("Display","");
-  _view.bottomPanel.setProperty("Width",850);
-
-}); // HtmlView Page setting action 'OnCheckOn' for element 'showPlotPosition_time'
-          _view.showVelocity_time.linkProperty("Checked",  function() { return showVel; }, function(_v) { showVel = _v; } ); // HtmlView Page linking property 'Checked' for element 'showVelocity_time'
-          _view.showVelocity_time.setAction("OnCheckOff", function(_data,_info) {
-  _view.velocity_time.setProperty("Display","none");
-  _view.bottomPanel.setProperty("Width",450);
-
-}); // HtmlView Page setting action 'OnCheckOff' for element 'showVelocity_time'
-          _view.showVelocity_time.setAction("OnCheckOn", function(_data,_info) {
-  _view.velocity_time.setProperty("Display","");
-  _view.bottomPanel.setProperty("Width",850);
-
-}); // HtmlView Page setting action 'OnCheckOn' for element 'showVelocity_time'
-          _view.showPlotAcel_time.linkProperty("Checked",  function() { return showAcel; }, function(_v) { showAcel = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPlotAcel_time'
-          _view.showPlotAcel_time.setAction("OnCheckOff", function(_data,_info) {
-  _view.acel_time.setProperty("Display","none");
-  _view.bottomPanel.setProperty("Width",450);
-
-}); // HtmlView Page setting action 'OnCheckOff' for element 'showPlotAcel_time'
-          _view.showPlotAcel_time.setAction("OnCheckOn", function(_data,_info) {
-  _view.acel_time.setProperty("Display","");
-  _view.bottomPanel.setProperty("Width",850);
-
-}); // HtmlView Page setting action 'OnCheckOn' for element 'showPlotAcel_time'
+          _view.showTraj.linkProperty("Checked",  function() { return showTraj; }, function(_v) { showTraj = _v; } ); // HtmlView Page linking property 'Checked' for element 'showTraj'
+          _view.showTraj.setAction("OnCheckOff", set_x_time_off); // HtmlView Page setting action 'OnCheckOff' for element 'showTraj'
+          _view.showTraj.setAction("OnCheckOn", set_x_time_on); // HtmlView Page setting action 'OnCheckOn' for element 'showTraj'
+          _view.showPosVec.linkProperty("Checked",  function() { return showPos; }, function(_v) { showPos = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPosVec'
+          _view.showPosVec.setAction("OnCheckOff", set_x_time_off); // HtmlView Page setting action 'OnCheckOff' for element 'showPosVec'
+          _view.showPosVec.setAction("OnCheckOn", set_x_time_on); // HtmlView Page setting action 'OnCheckOn' for element 'showPosVec'
+          _view.showPlotPos.linkProperty("Checked",  function() { return showPosPlt; }, function(_v) { showPosPlt = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPlotPos'
+          _view.showPlotPos.setAction("OnCheckOff", set_x_time_off); // HtmlView Page setting action 'OnCheckOff' for element 'showPlotPos'
+          _view.showPlotPos.setAction("OnCheckOn", set_x_time_on); // HtmlView Page setting action 'OnCheckOn' for element 'showPlotPos'
+          _view.showVelVec.linkProperty("Checked",  function() { return showVel; }, function(_v) { showVel = _v; } ); // HtmlView Page linking property 'Checked' for element 'showVelVec'
+          _view.showPlotVelocity.linkProperty("Checked",  function() { return showVelPlt; }, function(_v) { showVelPlt = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPlotVelocity'
+          _view.showPlotVelocity.setAction("OnCheckOff", set_v_time_off); // HtmlView Page setting action 'OnCheckOff' for element 'showPlotVelocity'
+          _view.showPlotVelocity.setAction("OnCheckOn", set_v_time_on); // HtmlView Page setting action 'OnCheckOn' for element 'showPlotVelocity'
+          _view.showAcelVec.linkProperty("Checked",  function() { return showAcel; }, function(_v) { showAcel = _v; } ); // HtmlView Page linking property 'Checked' for element 'showAcelVec'
+          _view.showPlotAcel.linkProperty("Checked",  function() { return showAcelPlt; }, function(_v) { showAcelPlt = _v; } ); // HtmlView Page linking property 'Checked' for element 'showPlotAcel'
+          _view.showPlotAcel.setAction("OnCheckOff", set_a_time_off); // HtmlView Page setting action 'OnCheckOff' for element 'showPlotAcel'
+          _view.showPlotAcel.setAction("OnCheckOn", set_a_time_on); // HtmlView Page setting action 'OnCheckOn' for element 'showPlotAcel'
           _view.showEqs.linkProperty("Checked",  function() { return showEqs; }, function(_v) { showEqs = _v; } ); // HtmlView Page linking property 'Checked' for element 'showEqs'
           _view.showEqs.setAction("OnCheckOff", function(_data,_info) {
   _view.functionPanel.setProperty("Display","none");
@@ -1160,6 +1199,7 @@ function cinematica2Dv3_View_0 (_topFrame) {
 
     _view._addElement(EJSS_DRAWING2D.plottingPanel,"velocity_time", _view.panel_plots) // EJsS HtmlView.HtmlView Page: declaration of element 'velocity_time'
       .setProperty("XFixedTick",0) // EJsS HtmlView.HtmlView Page: setting property 'XFixedTick' for element 'velocity_time'
+      .setProperty("Enabled",false) // EJsS HtmlView.HtmlView Page: setting property 'Enabled' for element 'velocity_time'
       .setProperty("MaximumY",1) // EJsS HtmlView.HtmlView Page: setting property 'MaximumY' for element 'velocity_time'
       .setProperty("YFixedTick",0) // EJsS HtmlView.HtmlView Page: setting property 'YFixedTick' for element 'velocity_time'
       .setProperty("MinimumX",0) // EJsS HtmlView.HtmlView Page: setting property 'MinimumX' for element 'velocity_time'
@@ -1320,28 +1360,47 @@ function cinematica2Dv3_View_0 (_topFrame) {
       .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/stepforward.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'stepButton'
       ;
 
-    _view._addElement(EJSS_INTERFACE.button,"stepButton2", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'stepButton2'
-      .setProperty("Width",5) // EJsS HtmlView.HtmlView Page: setting property 'Width' for element 'stepButton2'
-      .setProperty("Text","v") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'stepButton2'
+    _view._addElement(EJSS_INTERFACE.button,"stepback", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'stepback'
+      .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/stepBack.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'stepback'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"resetButton", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'resetButton'
       .setProperty("ImageUrl","/org/opensourcephysics/resources/controls/images/reset.gif") // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'resetButton'
       ;
 
-    _view._addElement(EJSS_INTERFACE.checkBox,"showPlotPosition_time", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPlotPosition_time'
-      .setProperty("Text","r(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPlotPosition_time'
-      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPlotPosition_time'
+    _view._addElement(EJSS_INTERFACE.checkBox,"showTraj", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showTraj'
+      .setProperty("Text","--") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showTraj'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showTraj'
       ;
 
-    _view._addElement(EJSS_INTERFACE.checkBox,"showVelocity_time", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showVelocity_time'
-      .setProperty("Text","v(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showVelocity_time'
-      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showVelocity_time'
+    _view._addElement(EJSS_INTERFACE.checkBox,"showPosVec", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPosVec'
+      .setProperty("Text","r") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPosVec'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPosVec'
       ;
 
-    _view._addElement(EJSS_INTERFACE.checkBox,"showPlotAcel_time", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPlotAcel_time'
-      .setProperty("Text","a(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPlotAcel_time'
-      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPlotAcel_time'
+    _view._addElement(EJSS_INTERFACE.checkBox,"showPlotPos", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPlotPos'
+      .setProperty("Text","r(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPlotPos'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPlotPos'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.checkBox,"showVelVec", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showVelVec'
+      .setProperty("Text","v") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showVelVec'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showVelVec'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.checkBox,"showPlotVelocity", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPlotVelocity'
+      .setProperty("Text","v(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPlotVelocity'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPlotVelocity'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.checkBox,"showAcelVec", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showAcelVec'
+      .setProperty("Text","a") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showAcelVec'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showAcelVec'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.checkBox,"showPlotAcel", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showPlotAcel'
+      .setProperty("Text","a(t)") // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'showPlotAcel'
+      .setProperty("Font","normal bold 10px ") // EJsS HtmlView.HtmlView Page: setting property 'Font' for element 'showPlotAcel'
       ;
 
     _view._addElement(EJSS_INTERFACE.checkBox,"showEqs", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showEqs'
@@ -1378,9 +1437,9 @@ function cinematica2Dv3_View_0 (_topFrame) {
     <hr />
     <p></p>
     <div id="copyright_message">
-      <div class="cc_left"  style="float:left">&#169; 2020, Humberto Carmona. Compiled with EJS 6.01 (201013)
+      <div class="cc_left"  style="float:left">&#169; 2025, Humberto Carmona. Compiled with EJS 6.02_BETA (201222)
 </div>
-      <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="library/images/cc_icon.png" /> </a> license.</div>
+      <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="_ejs_library/images/cc_icon.png" /> </a> license.</div>
     </div>
   </div>
     <script type="text/javascript"><!--//--><![CDATA[//><!--
@@ -1388,7 +1447,7 @@ function cinematica2Dv3_View_0 (_topFrame) {
       var _scorm;
       window.addEventListener('load',
         function () { 
-          _model =  new cinematica2Dv3("_topFrame","library/",null);
+          _model =  new cinematica2Dv3("_topFrame","_ejs_library/",null);
           if (typeof _isApp !== "undefined" && _isApp) _model.setRunAlways(true);
           TextResizeDetector.TARGET_ELEMENT_ID = '_topFrame';
           TextResizeDetector.USER_INIT_FUNC = function () {

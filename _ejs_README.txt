@@ -1,11 +1,11 @@
-<This document was created with EJS version 6.01 (build 201013)>
+<This document was created with JavaScript EJS version 6.02_BETA (build 201222)>
 
 All the files and subdirectories in this directory were extracted from a compressed ZIP file, and contain a Javascript simulation and its auxiliary files, created with Easy JavaScript Simulations <http://www.um.es/fem/EjsWiki>.
 
 A simulation directory has several HTML or XHTML files in it:
   - A main XHTML file named as the simulation.
-  - A table of contents XHTML file, named as the simulation plus a ‚Äú_Contents‚Äù suffix.
-  - A simulation XHTML file, named as the simulation plus a ‚Äú_Simulation‚Äù suffix.
+  - A table of contents XHTML file, named as the simulation plus a ì_Contentsî suffix.
+  - A simulation XHTML file, named as the simulation plus a ì_Simulationî suffix.
   - Possibly, other HTML or XHTML description pages, as included by the author.
 
 To access the complete model with its description pages and simulation in a frame, open the main XHTML file with your favorite browser.
