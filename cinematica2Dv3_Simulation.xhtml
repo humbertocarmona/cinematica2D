@@ -3023,33 +3023,17 @@
               "playPauseButton",
               _view.bottomPanel
             ) // EJsS HtmlView.HtmlView Page: declaration of element 'playPauseButton'
-            .setProperty("TextOn", "Play") // EJsS HtmlView.HtmlView Page: setting property 'TextOn' for element 'playPauseButton'
+            .setProperty("TextOn", "|>") // EJsS HtmlView.HtmlView Page: setting property 'TextOn' for element 'playPauseButton'
             .setProperty("Tooltip", "Play/Pause") // EJsS HtmlView.HtmlView Page: setting property 'Tooltip' for element 'playPauseButton'
-            .setProperty("TextOff", "Pause") // EJsS HtmlView.HtmlView Page: setting property 'TextOff' for element 'playPauseButton'
-            .setProperty(
-              "ImageOnUrl",
-              "/org/opensourcephysics/resources/controls/images/play.gif"
-            ) // EJsS HtmlView.HtmlView Page: setting property 'ImageOnUrl' for element 'playPauseButton'
-            .setProperty(
-              "ImageOffUrl",
-              "/org/opensourcephysics/resources/controls/images/pause.gif"
-            ); // EJsS HtmlView.HtmlView Page: setting property 'ImageOffUrl' for element 'playPauseButton'
+            .setProperty("TextOff", "||"); // EJsS HtmlView.HtmlView Page: setting property 'TextOff' for element 'playPauseButton'
 
           _view
             ._addElement(EJSS_INTERFACE.button, "stepButton", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'stepButton'
-            .setProperty(
-              "ImageUrl",
-              "/org/opensourcephysics/resources/controls/images/stepforward.gif"
-            ) // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'stepButton'
-            .setProperty("Text", "step"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'stepButton'
+            .setProperty("Text", "F"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'stepButton'
 
           _view
             ._addElement(EJSS_INTERFACE.button, "stepback", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'stepback'
-            .setProperty(
-              "ImageUrl",
-              "/org/opensourcephysics/resources/controls/images/stepBack.gif"
-            ) // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'stepback'
-            .setProperty("Text", "step b"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'stepback'
+            .setProperty("Text", "B"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'stepback'
 
           _view
             ._addElement(
@@ -3057,11 +3041,7 @@
               "resetButton",
               _view.bottomPanel
             ) // EJsS HtmlView.HtmlView Page: declaration of element 'resetButton'
-            .setProperty(
-              "ImageUrl",
-              "/org/opensourcephysics/resources/controls/images/reset.gif"
-            ) // EJsS HtmlView.HtmlView Page: setting property 'ImageUrl' for element 'resetButton'
-            .setProperty("Text", "reset"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'resetButton'
+            .setProperty("Text", "R"); // EJsS HtmlView.HtmlView Page: setting property 'Text' for element 'resetButton'
 
           _view
             ._addElement(EJSS_INTERFACE.checkBox, "showTraj", _view.bottomPanel) // EJsS HtmlView.HtmlView Page: declaration of element 'showTraj'
