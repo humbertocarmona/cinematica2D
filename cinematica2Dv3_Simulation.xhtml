@@ -6,11 +6,11 @@
 >
   <head>
     <meta charset="utf-8" />
-    <title>Cinemática 2D</title>
+    <title>Cinemálibraryle>
     <link rel="stylesheet" type="text/css" href="library/css/ejss.css" />
     <script src="library/scripts/common_script.js"></script>
     <script src="library/scripts/textresizedetector.js"></script>
-    <script src="library/ejsS.v1.min.js"></script>
+    <script src="library.v1.min.js"></script>
     <script type="text/javascript">
       <!--//--><![CDATA[//><!--
       /* _inputParameters: an object with different values for the model parameters */
@@ -133,6 +133,7 @@
         var tethax; // EjsS Model.Variables.Dynamical Vars.tethax
         var tethaax; // EjsS Model.Variables.Dynamical Vars.tethaax
         var ax; // EjsS Model.Variables.Dynamical Vars.ax
+        var xs; // EjsS Model.Variables.Dynamical Vars.xs
         var y; // EjsS Model.Variables.Dynamical Vars.y
         var vy; // EjsS Model.Variables.Dynamical Vars.vy
         var ay; // EjsS Model.Variables.Dynamical Vars.ay
@@ -140,6 +141,8 @@
         var acel; // EjsS Model.Variables.Dynamical Vars.acel
         var tethay; // EjsS Model.Variables.Dynamical Vars.tethay
         var tethaay; // EjsS Model.Variables.Dynamical Vars.tethaay
+        var ys; // EjsS Model.Variables.Dynamical Vars.ys
+        var it; // EjsS Model.Variables.Dynamical Vars.it
         var t; // EjsS Model.Variables.Dynamical Vars.t
         var dt; // EjsS Model.Variables.Dynamical Vars.dt
 
@@ -161,10 +164,10 @@
         var showPlot; // EjsS Model.Variables.Constants.showPlot
         var showEqs; // EjsS Model.Variables.Constants.showEqs
         var oneD; // EjsS Model.Variables.Constants.oneD
-        var function_x_t; // EjsS Model.Variables.Constants.function_x_t
         var function_y_t; // EjsS Model.Variables.Constants.function_y_t
         var function_y_t1; // EjsS Model.Variables.Constants.function_y_t1
         var function_y_t0; // EjsS Model.Variables.Constants.function_y_t0
+        var function_x_t; // EjsS Model.Variables.Constants.function_x_t
 
         var ti; // EjsS Model.Variables.limite.ti
         var tii; // EjsS Model.Variables.limite.tii
@@ -201,6 +204,7 @@
             tethax: tethax,
             tethaax: tethaax,
             ax: ax,
+            xs: xs,
             y: y,
             vy: vy,
             ay: ay,
@@ -208,6 +212,8 @@
             acel: acel,
             tethay: tethay,
             tethaay: tethaay,
+            ys: ys,
+            it: it,
             t: t,
             dt: dt,
             xmin: xmin,
@@ -227,10 +233,10 @@
             showPlot: showPlot,
             showEqs: showEqs,
             oneD: oneD,
-            function_x_t: function_x_t,
             function_y_t: function_y_t,
             function_y_t1: function_y_t1,
             function_y_t0: function_y_t0,
+            function_x_t: function_x_t,
             ti: ti,
             tii: tii,
             xi: xi,
@@ -262,6 +268,7 @@
             tethax: tethax,
             tethaax: tethaax,
             ax: ax,
+            xs: xs,
             y: y,
             vy: vy,
             ay: ay,
@@ -269,6 +276,8 @@
             acel: acel,
             tethay: tethay,
             tethaay: tethaay,
+            ys: ys,
+            it: it,
             t: t,
             dt: dt,
             xmin: xmin,
@@ -288,10 +297,10 @@
             showPlot: showPlot,
             showEqs: showEqs,
             oneD: oneD,
-            function_x_t: function_x_t,
             function_y_t: function_y_t,
             function_y_t1: function_y_t1,
             function_y_t0: function_y_t0,
+            function_x_t: function_x_t,
             ti: ti,
             tii: tii,
             xi: xi,
@@ -318,6 +327,7 @@
           if (typeof json.tethax != "undefined") tethax = json.tethax;
           if (typeof json.tethaax != "undefined") tethaax = json.tethaax;
           if (typeof json.ax != "undefined") ax = json.ax;
+          if (typeof json.xs != "undefined") xs = json.xs;
           if (typeof json.y != "undefined") y = json.y;
           if (typeof json.vy != "undefined") vy = json.vy;
           if (typeof json.ay != "undefined") ay = json.ay;
@@ -325,6 +335,8 @@
           if (typeof json.acel != "undefined") acel = json.acel;
           if (typeof json.tethay != "undefined") tethay = json.tethay;
           if (typeof json.tethaay != "undefined") tethaay = json.tethaay;
+          if (typeof json.ys != "undefined") ys = json.ys;
+          if (typeof json.it != "undefined") it = json.it;
           if (typeof json.t != "undefined") t = json.t;
           if (typeof json.dt != "undefined") dt = json.dt;
           if (typeof json.xmin != "undefined") xmin = json.xmin;
@@ -347,14 +359,14 @@
           if (typeof json.showPlot != "undefined") showPlot = json.showPlot;
           if (typeof json.showEqs != "undefined") showEqs = json.showEqs;
           if (typeof json.oneD != "undefined") oneD = json.oneD;
-          if (typeof json.function_x_t != "undefined")
-            function_x_t = json.function_x_t;
           if (typeof json.function_y_t != "undefined")
             function_y_t = json.function_y_t;
           if (typeof json.function_y_t1 != "undefined")
             function_y_t1 = json.function_y_t1;
           if (typeof json.function_y_t0 != "undefined")
             function_y_t0 = json.function_y_t0;
+          if (typeof json.function_x_t != "undefined")
+            function_x_t = json.function_x_t;
           if (typeof json.ti != "undefined") ti = json.ti;
           if (typeof json.tii != "undefined") tii = json.tii;
           if (typeof json.xi != "undefined") xi = json.xi;
@@ -383,6 +395,7 @@
           if (typeof json.tethax != "undefined") tethax = json.tethax;
           if (typeof json.tethaax != "undefined") tethaax = json.tethaax;
           if (typeof json.ax != "undefined") ax = json.ax;
+          if (typeof json.xs != "undefined") xs = json.xs;
           if (typeof json.y != "undefined") y = json.y;
           if (typeof json.vy != "undefined") vy = json.vy;
           if (typeof json.ay != "undefined") ay = json.ay;
@@ -390,6 +403,8 @@
           if (typeof json.acel != "undefined") acel = json.acel;
           if (typeof json.tethay != "undefined") tethay = json.tethay;
           if (typeof json.tethaay != "undefined") tethaay = json.tethaay;
+          if (typeof json.ys != "undefined") ys = json.ys;
+          if (typeof json.it != "undefined") it = json.it;
           if (typeof json.t != "undefined") t = json.t;
           if (typeof json.dt != "undefined") dt = json.dt;
           if (typeof json.xmin != "undefined") xmin = json.xmin;
@@ -412,14 +427,14 @@
           if (typeof json.showPlot != "undefined") showPlot = json.showPlot;
           if (typeof json.showEqs != "undefined") showEqs = json.showEqs;
           if (typeof json.oneD != "undefined") oneD = json.oneD;
-          if (typeof json.function_x_t != "undefined")
-            function_x_t = json.function_x_t;
           if (typeof json.function_y_t != "undefined")
             function_y_t = json.function_y_t;
           if (typeof json.function_y_t1 != "undefined")
             function_y_t1 = json.function_y_t1;
           if (typeof json.function_y_t0 != "undefined")
             function_y_t0 = json.function_y_t0;
+          if (typeof json.function_x_t != "undefined")
+            function_x_t = json.function_x_t;
           if (typeof json.ti != "undefined") ti = json.ti;
           if (typeof json.tii != "undefined") tii = json.tii;
           if (typeof json.xi != "undefined") xi = json.xi;
@@ -474,23 +489,26 @@
           tethax = 0.0; // EjsS Model.Variables.Dynamical Vars.tethax
           tethaax = 0.0; // EjsS Model.Variables.Dynamical Vars.tethaax
           ax = 0.2; // EjsS Model.Variables.Dynamical Vars.ax
+          xs = new Array(1000); // EjsS Model.Variables.Dynamical Vars.xs
           y = 8; // EjsS Model.Variables.Dynamical Vars.y
           vy = 0; // EjsS Model.Variables.Dynamical Vars.vy
           ay = 0; // EjsS Model.Variables.Dynamical Vars.ay
           tethay = 0; // EjsS Model.Variables.Dynamical Vars.tethay
           tethaay = 0; // EjsS Model.Variables.Dynamical Vars.tethaay
+          ys = new Array(1000); // EjsS Model.Variables.Dynamical Vars.ys
+          it = 0; // EjsS Model.Variables.Dynamical Vars.it
           t = 0.0; // EjsS Model.Variables.Dynamical Vars.t
           dt = 0.005; // EjsS Model.Variables.Dynamical Vars.dt
         });
 
         _model.addToReset(function () {
-          xmin = -3; // EjsS Model.Variables.plotrange.xmin
-          xmax = 3; // EjsS Model.Variables.plotrange.xmax
+          xmin = -4; // EjsS Model.Variables.plotrange.xmin
+          xmax = 4; // EjsS Model.Variables.plotrange.xmax
           ymin = -3; // EjsS Model.Variables.plotrange.ymin
           ymax = 3; // EjsS Model.Variables.plotrange.ymax
           tmax = 1.2; // EjsS Model.Variables.plotrange.tmax
-          plotsize = 450; // EjsS Model.Variables.plotrange.plotsize
-          plotsize2 = 300; // EjsS Model.Variables.plotrange.plotsize2
+          plotsize = 650; // EjsS Model.Variables.plotrange.plotsize
+          plotsize2 = 400; // EjsS Model.Variables.plotrange.plotsize2
         });
 
         _model.addToReset(function () {
@@ -504,10 +522,10 @@
           showPlot = true; // EjsS Model.Variables.Constants.showPlot
           showEqs = false; // EjsS Model.Variables.Constants.showEqs
           oneD = true; // EjsS Model.Variables.Constants.oneD
-          function_x_t = "-1.8 + 12*t - 10*t*t"; // EjsS Model.Variables.Constants.function_x_t
-          function_y_t = "1.8"; // EjsS Model.Variables.Constants.function_y_t
+          function_y_t = "0"; // EjsS Model.Variables.Constants.function_y_t
           function_y_t1 = "1.8 + 0.5*t- 4.9*t*t"; // EjsS Model.Variables.Constants.function_y_t1
-          function_y_t0 = "1.8"; // EjsS Model.Variables.Constants.function_y_t0
+          function_y_t0 = "0.0"; // EjsS Model.Variables.Constants.function_y_t0
+          function_x_t = "-3.5 + 12*t - 6*t*t"; // EjsS Model.Variables.Constants.function_x_t
         });
 
         _model.addToReset(function () {
@@ -678,7 +696,12 @@
           tethaay = Math.atan2(y - 2 * y0 + y00, dt * dt); // > Initialization.Init Page:38
           vel = Math.sqrt(vx * vx + vy * vy); // > Initialization.Init Page:39
           acel = Math.sqrt(ax * ax + ay * ay); // > Initialization.Init Page:40
-          _view.bottomPanel.setProperty("Width", 850); // > Initialization.Init Page:41
+          for (var i = 0; i < 1000; i++) {
+            // > Initialization.Init Page:41
+            xs[i] = x; // > Initialization.Init Page:42
+            ys[i] = y; // > Initialization.Init Page:43
+          } // > Initialization.Init Page:44
+          _view.bottomPanel.setProperty("Width", 850); // > Initialization.Init Page:45
         });
 
         _model.addToEvolution(function () {
@@ -702,6 +725,13 @@
           ay = (y - 2 * y0 + y00) / (dt * dt); // > Evolution.Evol Page:17
           vel = Math.sqrt(vx * vx + vy * vy); // > Evolution.Evol Page:18
           acel = Math.sqrt(ax * ax + ay * ay); // > Evolution.Evol Page:19
+          var i = Math.round(t / dt); // > Evolution.Evol Page:20
+          if (i % 5 == 0) {
+            // > Evolution.Evol Page:21
+            it = it + 1; // > Evolution.Evol Page:22
+          } // > Evolution.Evol Page:23
+          xs[it] = x; // > Evolution.Evol Page:24
+          ys[it] = y; // > Evolution.Evol Page:25
         });
 
         _model.addToFixedRelations(function () {
@@ -752,10 +782,10 @@
                 _view.trajetoria.linkProperty(
                   "Height",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Height' for element 'trajetoria'
                 _view.trajetoria.linkProperty(
@@ -841,6 +871,33 @@
                     y = _v;
                   }
                 ); // HtmlView Page linking property 'InputY' for element 'trail'
+                _view.shadow.linkProperty(
+                  "X",
+                  function () {
+                    return xs;
+                  },
+                  function (_v) {
+                    xs = _v;
+                  }
+                ); // HtmlView Page linking property 'X' for element 'shadow'
+                _view.shadow.linkProperty(
+                  "Y",
+                  function () {
+                    return ys;
+                  },
+                  function (_v) {
+                    ys = _v;
+                  }
+                ); // HtmlView Page linking property 'Y' for element 'shadow'
+                _view.shadow.linkProperty(
+                  "Visibility",
+                  function () {
+                    return showTraj;
+                  },
+                  function (_v) {
+                    showTraj = _v;
+                  }
+                ); // HtmlView Page linking property 'Visibility' for element 'shadow'
                 _view.shape.linkProperty(
                   "X",
                   function () {
@@ -1039,19 +1096,19 @@
                 _view.x_time.linkProperty(
                   "Height",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Height' for element 'x_time'
                 _view.x_time.linkProperty(
                   "Width",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Width' for element 'x_time'
                 _view.x_time.linkProperty("Title", function () {
@@ -1468,19 +1525,19 @@
                 _view.y_time.linkProperty(
                   "Height",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Height' for element 'y_time'
                 _view.y_time.linkProperty(
                   "Width",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Width' for element 'y_time'
                 _view.y_time.linkProperty("Title", function () {
@@ -1906,10 +1963,10 @@
                 _view.velocity_time.linkProperty(
                   "Width",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Width' for element 'velocity_time'
                 _view.velocity_time.linkProperty("Title", function () {
@@ -2109,10 +2166,10 @@
                 _view.acel_time.linkProperty(
                   "Width",
                   function () {
-                    return plotsize;
+                    return plotsize2;
                   },
                   function (_v) {
-                    plotsize = _v;
+                    plotsize2 = _v;
                   }
                 ); // HtmlView Page linking property 'Width' for element 'acel_time'
                 _view.acel_time.linkProperty(
@@ -2550,14 +2607,21 @@
             ._addElement(EJSS_DRAWING2D.trail, "trail", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'trail'
             .setProperty("LineColor", "DarkGray") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'trail'
             .setProperty("NoRepeat", true) // EJsS HtmlView.HtmlView Page: setting property 'NoRepeat' for element 'trail'
-            .setProperty("LineWidth", 5); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'trail'
+            .setProperty("LineWidth", 1); // EJsS HtmlView.HtmlView Page: setting property 'LineWidth' for element 'trail'
+
+          _view
+            ._addElement(EJSS_DRAWING2D.shapeSet, "shadow", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'shadow'
+            .setProperty("FillColor", "LightGray") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'shadow'
+            .setProperty("SizeX", 0.1) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'shadow'
+            .setProperty("ShapeType", "WHEEL") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element 'shadow'
+            .setProperty("SizeY", 0.13); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'shadow'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "shape", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'shape'
-            .setProperty("FillColor", "rgba(200,150,0,1)") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'shape'
-            .setProperty("SizeX", 10) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'shape'
+            .setProperty("FillColor", "Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'shape'
+            .setProperty("SizeX", 20) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'shape'
             .setProperty("PixelSize", true) // EJsS HtmlView.HtmlView Page: setting property 'PixelSize' for element 'shape'
-            .setProperty("SizeY", 10); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'shape'
+            .setProperty("SizeY", 20); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'shape'
 
           _view
             ._addElement(EJSS_DRAWING2D.arrow, "acel", _view.trajetoria) // EJsS HtmlView.HtmlView Page: declaration of element 'acel'
@@ -2842,26 +2906,27 @@
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "vy", _view.velocity_time) // EJsS HtmlView.HtmlView Page: declaration of element 'vy'
-            .setProperty("LineColor", "Red"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vy'
+            .setProperty("LineColor", "Blue"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vy'
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "vx", _view.velocity_time) // EJsS HtmlView.HtmlView Page: declaration of element 'vx'
-            .setProperty("LineColor", "Blue"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vx'
+            .setProperty("LineColor", "Red"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vx'
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "vel2", _view.velocity_time) // EJsS HtmlView.HtmlView Page: declaration of element 'vel2'
-            .setProperty("LineColor", "Black"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vel2'
+            .setProperty("LineColor", "Black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'vel2'
+            .setProperty("Visibility", false); // EJsS HtmlView.HtmlView Page: setting property 'Visibility' for element 'vel2'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "point22", _view.velocity_time) // EJsS HtmlView.HtmlView Page: declaration of element 'point22'
-            .setProperty("FillColor", "Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point22'
+            .setProperty("FillColor", "Blue") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point22'
             .setProperty("SizeX", 5) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'point22'
             .setProperty("PixelSize", true) // EJsS HtmlView.HtmlView Page: setting property 'PixelSize' for element 'point22'
             .setProperty("SizeY", 5); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'point22'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "point2", _view.velocity_time) // EJsS HtmlView.HtmlView Page: declaration of element 'point2'
-            .setProperty("FillColor", "Blue") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point2'
+            .setProperty("FillColor", "Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point2'
             .setProperty("SizeX", 5) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'point2'
             .setProperty("PixelSize", true) // EJsS HtmlView.HtmlView Page: setting property 'PixelSize' for element 'point2'
             .setProperty("SizeY", 5); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'point2'
@@ -2897,26 +2962,27 @@
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "ay", _view.acel_time) // EJsS HtmlView.HtmlView Page: declaration of element 'ay'
-            .setProperty("LineColor", "Red"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'ay'
+            .setProperty("LineColor", "Blue"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'ay'
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "ax", _view.acel_time) // EJsS HtmlView.HtmlView Page: declaration of element 'ax'
-            .setProperty("LineColor", "Blue"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'ax'
+            .setProperty("LineColor", "Red"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'ax'
 
           _view
             ._addElement(EJSS_DRAWING2D.trail, "acel2", _view.acel_time) // EJsS HtmlView.HtmlView Page: declaration of element 'acel2'
-            .setProperty("LineColor", "Black"); // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'acel2'
+            .setProperty("LineColor", "Black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element 'acel2'
+            .setProperty("Visibility", false); // EJsS HtmlView.HtmlView Page: setting property 'Visibility' for element 'acel2'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "point222", _view.acel_time) // EJsS HtmlView.HtmlView Page: declaration of element 'point222'
-            .setProperty("FillColor", "Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point222'
+            .setProperty("FillColor", "Blue") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point222'
             .setProperty("SizeX", 5) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'point222'
             .setProperty("PixelSize", true) // EJsS HtmlView.HtmlView Page: setting property 'PixelSize' for element 'point222'
             .setProperty("SizeY", 5); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'point222'
 
           _view
             ._addElement(EJSS_DRAWING2D.shape, "point23", _view.acel_time) // EJsS HtmlView.HtmlView Page: declaration of element 'point23'
-            .setProperty("FillColor", "Blue") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point23'
+            .setProperty("FillColor", "Red") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 'point23'
             .setProperty("SizeX", 5) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element 'point23'
             .setProperty("PixelSize", true) // EJsS HtmlView.HtmlView Page: setting property 'PixelSize' for element 'point23'
             .setProperty("SizeY", 5); // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element 'point23'
